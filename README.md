@@ -105,11 +105,6 @@ Cassandra's main principle from the view of CAP theorem is **AP ("Availability +
 
 HBase on the other hand has the **CP principle ("Consistency + tolerance to network partitions")**. This means that data consistency is more important for HBase than availability.
 
-
-
-
-**CAP Theorem** (by Professor Eric Brewer, Co-founder and Chief Scientist of Inktomi), states that, a distributed or shared data system design, can offer at most two out of three desirable properties – Consistency, Availability and tolerance to network Partitions. Very basically, “consistency” means that if someone writes a value to a database, thereafter other users will immediately be able to read the same value back, “availability” means that if some number of nodes fail in your cluster the distributed system can remain operational, and “tolerance to partitions” means that if the nodes in your cluster are divided into two groups that can no longer communicate by a network failure, again the system remains operational.
-
 In practical example,
 
 1. Cassandra is awesome for Random Reads, while Hbase is best for Range Scans.
@@ -119,6 +114,26 @@ In practical example,
 5. Because of random partitioning, partial rowkeys cannot be used with Cassandra. RowKeys must be known exactly
 
 More here: http://bigdatanoob.blogspot.in/2012/11/hbase-vs-cassandra.html
+
+
+
+# CAP Throrem
+**CAP Theorem** (by Professor Eric Brewer), is comprised of three components as they relate to distributed data stores:
+- **Consistency**: All reads receive the most recent write or an error.
+- **Availability**: All reads contain data, but it might not be the most recent.
+- **Partition tolerance**: The system continues to operate despite network failures (ie; dropped partitions, slow network connections, or unavailable network connections between nodes.)
+
+### CAP Theorem for Databases and Partition Tolerance
+In normal operations, your data store provides all three functions. But the CAP theorem maintains that when a distributed database experiences a network failure, you can provide either consistency or availability.
+
+It’s a tradeoff. All other times, all three can be provided. But, **in the event of a network failure, a choice must be made.**
+
+In the theorem, **partition tolerance is a must**. The assumption is that the system operates on a distributed data store so the system, by nature, operates with network partitions. Network failures will happen, so to offer any kind of reliable service, partition tolerance is necessary—the P of CAP.
+
+That leaves a decision between the other two, C and A. **When a network failure happens, one can choose to guarantee consistency or availability**
+
+### The CAP Theorem vs. ACID (Atomicity, Consistency, Isolation, and Durability)
+Consistency in CAP is different than that of ACID. Consistency in CAP means having the most up-to-date information. In ACID, consistency means any new transaction to the database won’t corrupt the database.
 
 
 
